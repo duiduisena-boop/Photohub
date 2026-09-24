@@ -1,0 +1,4047 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PhotoHub | Photography Marketplace</title>
+
+<style>
+
+/* =========================================================
+   PHOTOHUB — DARK RED MINIMAL THEME
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --black:#070707;
+    --black2:#0d0d0d;
+    --card:#111111;
+    --card2:#151515;
+
+    --red:#e50914;
+    --red2:#ff3038;
+    --red-dark:#a8070f;
+
+    --white:#ffffff;
+    --text:#f5f5f5;
+    --muted:#999999;
+
+    --border:#262626;
+    --border-red:#481316;
+
+    --success:#22c55e;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Arial,
+        "Noto Sans Thai",
+        sans-serif;
+
+    background:var(--black);
+    color:var(--text);
+
+    min-height:100vh;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+::selection{
+    background:var(--red);
+    color:white;
+}
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#080808;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#333;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:var(--red);
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.nav{
+    height:74px;
+
+    background:rgba(7,7,7,.94);
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    backdrop-filter:blur(15px);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:900;
+
+    letter-spacing:-1.5px;
+
+    color:white;
+}
+
+.logo span{
+    color:var(--red);
+}
+
+.nav-buttons{
+    display:flex;
+    gap:10px;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn{
+    border:1px solid transparent;
+
+    background:var(--red);
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    font-weight:700;
+
+    transition:.2s ease;
+}
+
+.btn:hover{
+    background:var(--red2);
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 8px 25px rgba(229,9,20,.18);
+}
+
+.btn:active{
+    transform:scale(.98);
+}
+
+.btn-light{
+    background:#1b1b1b;
+    color:white;
+    border-color:#292929;
+}
+
+.btn-light:hover{
+    background:#242424;
+    border-color:#3a3a3a;
+    box-shadow:none;
+}
+
+.btn-purple{
+    background:var(--red);
+}
+
+.btn-danger{
+    background:#b91c1c;
+}
+
+.btn-outline{
+    background:transparent;
+    color:white;
+    border-color:#444;
+}
+
+.btn-outline:hover{
+    background:var(--red);
+    border-color:var(--red);
+}
+
+/* =========================================================
+   HOME
+========================================================= */
+
+.home{
+    min-height:calc(100vh - 74px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:60px 20px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(229,9,20,.13),
+            transparent 38%
+        ),
+
+        #070707;
+}
+
+.home-box{
+    width:100%;
+    max-width:1050px;
+
+    text-align:center;
+}
+
+.home-box h1{
+    font-size:clamp(45px,7vw,78px);
+
+    line-height:1;
+
+    letter-spacing:-5px;
+
+    margin-bottom:25px;
+}
+
+.home-box h1 span{
+    color:var(--red);
+}
+
+.home-box p{
+    max-width:680px;
+
+    margin:0 auto 45px;
+
+    color:var(--muted);
+
+    font-size:18px;
+
+    line-height:1.7;
+}
+
+/* =========================================================
+   ROLE CARDS
+========================================================= */
+
+.role-grid{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+
+    max-width:850px;
+
+    margin:auto;
+}
+
+.role-card{
+    background:linear-gradient(
+        145deg,
+        #131313,
+        #0e0e0e
+    );
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:45px 30px;
+
+    transition:.25s;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.4);
+}
+
+.role-card:hover{
+    transform:translateY(-6px);
+
+    border-color:
+        rgba(229,9,20,.55);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.55),
+        0 0 30px rgba(229,9,20,.06);
+}
+
+.role-icon{
+    width:75px;
+    height:75px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:0 auto 20px;
+
+    border-radius:20px;
+
+    background:#1b0b0c;
+
+    border:1px solid var(--border-red);
+
+    font-size:36px;
+}
+
+.role-card h2{
+    font-size:27px;
+
+    margin-bottom:10px;
+}
+
+.role-card p{
+    font-size:14px;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+
+    color:var(--muted);
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+    max-width:1200px;
+
+    margin:auto;
+
+    padding:45px 20px 80px;
+}
+
+.page-title{
+    margin-bottom:30px;
+}
+
+.page-title h1{
+    font-size:42px;
+
+    letter-spacing:-2px;
+}
+
+.page-title p{
+    color:var(--muted);
+}
+
+/* =========================================================
+   DASHBOARD TOP
+========================================================= */
+
+.dashboard-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+}
+
+.dashboard-top h1{
+    font-size:40px;
+
+    letter-spacing:-2px;
+}
+
+.dashboard-top p{
+    margin-top:6px;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.search-area{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:16px;
+
+    display:flex;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.25);
+}
+
+.search-area input,
+.search-area select{
+    background:#0b0b0b;
+
+    color:white;
+
+    border:1px solid #2a2a2a;
+
+    border-radius:10px;
+
+    padding:13px;
+
+    outline:none;
+}
+
+.search-area input{
+    flex:1;
+}
+
+.search-area input::placeholder{
+    color:#666;
+}
+
+.search-area input:focus,
+.search-area select:focus{
+    border-color:var(--red);
+}
+
+/* =========================================================
+   PHOTOGRAPHER GRID
+========================================================= */
+
+.photographer-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.photo-card{
+    background:var(--card);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    transition:.25s;
+}
+
+.photo-card:hover{
+    transform:translateY(-4px);
+
+    border-color:#3a181a;
+}
+
+.photo-cover{
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+    background:#111;
+}
+
+.photo-info{
+    padding:19px;
+}
+
+.photo-info h3{
+    margin-bottom:5px;
+
+    font-size:20px;
+}
+
+.photo-meta{
+    color:#888;
+
+    font-size:13px;
+
+    margin-bottom:12px;
+}
+
+.price{
+    color:white;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+}
+
+.price::first-letter{
+    color:var(--red);
+}
+
+.card-buttons{
+    display:flex;
+
+    gap:8px;
+}
+
+.card-buttons button{
+    flex:1;
+}
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-box{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+}
+
+.profile-head{
+    display:flex;
+
+    gap:25px;
+
+    align-items:center;
+}
+
+.profile-image{
+    width:150px;
+    height:150px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+    background:#181818;
+
+    border:1px solid var(--border);
+}
+
+.profile-head h2{
+    font-size:30px;
+
+    margin-bottom:5px;
+}
+
+/* =========================================================
+   PORTFOLIO
+========================================================= */
+
+.portfolio-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:12px;
+}
+
+.portfolio-item{
+    background:#0c0c0c;
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    transition:.2s;
+}
+
+.portfolio-item:hover{
+    border-color:#421417;
+}
+
+.portfolio-item img{
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+}
+
+.portfolio-info{
+    padding:15px;
+}
+
+.portfolio-info h3{
+    margin-bottom:5px;
+}
+
+/* =========================================================
+   DASHBOARD CARDS
+========================================================= */
+
+.dashboard-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:18px;
+
+    margin-bottom:30px;
+}
+
+.dashboard-card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    transition:.2s;
+}
+
+.dashboard-card:hover{
+    border-color:#401417;
+}
+
+.dashboard-card .icon{
+    width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:#1a0b0c;
+
+    border:1px solid var(--border-red);
+
+    font-size:22px;
+
+    margin-bottom:15px;
+}
+
+.dashboard-card h3{
+    font-size:27px;
+
+    margin-bottom:5px;
+}
+
+.dashboard-card p{
+    color:#777;
+
+    font-size:14px;
+}
+
+/* =========================================================
+   FORM BOX
+========================================================= */
+
+.form-box{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.2);
+}
+
+.form-box h2{
+    font-size:25px;
+}
+
+.form{
+    display:grid;
+
+    gap:14px;
+}
+
+.form label{
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:#ddd;
+}
+
+.form input,
+.form select,
+.form textarea{
+    width:100%;
+
+    background:#090909;
+
+    color:white;
+
+    border:1px solid #292929;
+
+    border-radius:10px;
+
+    padding:13px;
+
+    outline:none;
+}
+
+.form input::placeholder,
+.form textarea::placeholder{
+    color:#666;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus{
+    border-color:var(--red);
+
+    box-shadow:
+        0 0 0 2px rgba(229,9,20,.08);
+}
+
+.form textarea{
+    min-height:110px;
+
+    resize:vertical;
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.82);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:500;
+
+    backdrop-filter:blur(8px);
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+
+    max-width:550px;
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:#111111;
+
+    border:1px solid #292929;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    position:relative;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.8);
+}
+
+.modal-box h2{
+    font-size:28px;
+}
+
+.close{
+    position:absolute;
+
+    right:18px;
+    top:15px;
+
+    width:35px;
+    height:35px;
+
+    border:1px solid #292929;
+
+    border-radius:50%;
+
+    background:#1a1a1a;
+
+    color:white;
+
+    font-size:20px;
+}
+
+.close:hover{
+    background:var(--red);
+
+    border-color:var(--red);
+}
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message{
+    background:#0c0c0c;
+
+    border:1px solid var(--border);
+
+    padding:18px;
+
+    border-radius:15px;
+
+    margin-bottom:12px;
+}
+
+.message-header{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-bottom:8px;
+}
+
+.status{
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    background:#2a0b0d;
+
+    color:#ff5a61;
+
+    border:1px solid #4a171a;
+}
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+    position:fixed;
+
+    bottom:25px;
+    right:25px;
+
+    background:#151515;
+
+    color:white;
+
+    padding:15px 20px;
+
+    border-radius:12px;
+
+    border:1px solid #333;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.6);
+
+    display:none;
+
+    z-index:999;
+}
+
+.toast::before{
+    content:"";
+
+    display:inline-block;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--red);
+
+    margin-right:9px;
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+hr{
+    border:0;
+
+    border-top:1px solid var(--border);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
+
+    .photographer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .portfolio-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .nav{
+        padding:0 18px;
+    }
+
+    .nav-buttons{
+        display:none;
+    }
+
+    .home{
+        padding:45px 16px;
+    }
+
+    .home-box h1{
+        font-size:48px;
+
+        letter-spacing:-3px;
+    }
+
+    .home-box p{
+        font-size:15px;
+    }
+
+    .role-grid{
+        grid-template-columns:1fr;
+    }
+
+    .role-card{
+        padding:35px 22px;
+    }
+
+    .photographer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .dashboard-grid{
+        grid-template-columns:1fr;
+    }
+
+    .portfolio-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search-area{
+        flex-direction:column;
+    }
+
+    .dashboard-top{
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .dashboard-top h1{
+        font-size:32px;
+    }
+
+    .profile-head{
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .profile-image{
+        width:110px;
+        height:110px;
+    }
+
+    .modal-box{
+        padding:22px;
+
+        border-radius:18px;
+    }
+
+    .toast{
+        left:15px;
+        right:15px;
+        bottom:15px;
+        text-align:center;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================================================
+                         NAV
+========================================================= -->
+
+<nav class="nav">
+
+    <div class="logo">
+        Photo<span>Hub</span>
+    </div>
+
+    <div
+        class="nav-buttons"
+        id="navButtons"
+    >
+
+        <button
+            class="btn btn-light"
+            onclick="openLogin()"
+        >
+            เข้าสู่ระบบ
+        </button>
+
+        <button
+            class="btn"
+            onclick="goHome()"
+        >
+            หน้าหลัก
+        </button>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+                         HOME
+========================================================= -->
+
+<section
+    id="homePage"
+    class="home"
+>
+
+    <div class="home-box">
+
+        <h1>
+            Welcome to<br>
+            <span>PhotoHub</span>
+        </h1>
+
+        <p>
+            แพลตฟอร์มกลางสำหรับค้นหาและให้บริการช่างภาพ
+            เลือกสไตล์ที่ชอบ ดูผลงาน ราคา
+            และติดต่อช่างภาพได้ในที่เดียว
+        </p>
+
+
+        <div class="role-grid">
+
+
+            <!-- PHOTOGRAPHER -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    📸
+                </div>
+
+                <h2>
+                    ฉันเป็นช่างภาพ
+                </h2>
+
+                <p>
+                    สร้างโปรไฟล์ของคุณ
+                    ลง Portfolio
+                    ตั้งเรทราคา
+                    และรับลูกค้าผ่าน PhotoHub
+                </p>
+
+                <button
+                    class="btn"
+                    style="width:100%"
+                    onclick="openRegister('photographer')"
+                >
+                    สมัครเป็นช่างภาพ
+                </button>
+
+            </div>
+
+
+            <!-- CUSTOMER -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    🔎
+                </div>
+
+                <h2>
+                    ฉันกำลังหาช่างภาพ
+                </h2>
+
+                <p>
+                    ค้นหาช่างภาพตามสไตล์
+                    ดูผลงาน ราคา
+                    และติดต่อเพื่อจองงาน
+                </p>
+
+                <button
+                    class="btn"
+                    style="width:100%"
+                    onclick="openRegister('customer')"
+                >
+                    สมัครเพื่อหาช่างภาพ
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div style="margin-top:25px">
+
+            <button
+                class="btn btn-light"
+                onclick="openLogin()"
+            >
+                มีบัญชีอยู่แล้ว? เข้าสู่ระบบ
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+                    CUSTOMER PAGE
+========================================================= -->
+
+<section
+    id="customerPage"
+    class="app hidden"
+>
+
+    <div class="dashboard-top">
+
+        <div>
+
+            <h1>
+                ค้นหาช่างภาพ
+            </h1>
+
+            <p class="muted">
+                เลือกสไตล์ที่คุณชอบ
+            </p>
+
+        </div>
+
+        <button
+            class="btn btn-light"
+            onclick="logout()"
+        >
+            ออกจากระบบ
+        </button>
+
+    </div>
+
+
+    <div class="search-area">
+
+        <input
+            id="searchInput"
+            placeholder="ค้นหาช่างภาพ เช่น งานแต่ง Portrait"
+        >
+
+
+        <select id="searchType">
+
+            <option value="">
+                ทุกประเภท
+            </option>
+
+            <option>
+                งานแต่งงาน
+            </option>
+
+            <option>
+                รับปริญญา
+            </option>
+
+            <option>
+                Portrait
+            </option>
+
+            <option>
+                สินค้า
+            </option>
+
+            <option>
+                แฟชั่น
+            </option>
+
+            <option>
+                อีเวนต์
+            </option>
+
+        </select>
+
+
+        <button
+            class="btn"
+            onclick="searchPhotographers()"
+        >
+            ค้นหา
+        </button>
+
+    </div>
+
+
+    <div
+        id="customerPhotographers"
+        class="photographer-grid"
+    ></div>
+
+
+    <div
+        class="form-box"
+        style="margin-top:30px"
+    >
+
+        <h2>
+            💬 การติดต่อของฉัน
+        </h2>
+
+        <br>
+
+        <div id="customerMessages"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+                  PHOTOGRAPHER DASHBOARD
+========================================================= -->
+
+<section
+    id="photographerPage"
+    class="app hidden"
+>
+
+
+    <div class="dashboard-top">
+
+        <div>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p
+                id="photographerWelcome"
+                class="muted"
+            ></p>
+
+        </div>
+
+
+        <button
+            class="btn btn-light"
+            onclick="logout()"
+        >
+            ออกจากระบบ
+        </button>
+
+    </div>
+
+
+    <!-- PROFILE -->
+
+    <div class="profile-box">
+
+        <div class="profile-head">
+
+            <img
+                id="myProfileImage"
+                class="profile-image"
+            >
+
+            <div>
+
+                <h2 id="myName"></h2>
+
+                <p
+                    id="myType"
+                    class="muted"
+                ></p>
+
+                <p
+                    id="myBio"
+                    style="margin-top:10px"
+                ></p>
+
+                <p
+                    id="myPrice"
+                    style="
+                        margin-top:10px;
+                        font-weight:bold;
+                        color:#ff3038;
+                    "
+                ></p>
+
+
+                <button
+                    class="btn"
+                    style="margin-top:15px"
+                    onclick="openEditProfile()"
+                >
+                    แก้ไขโปรไฟล์
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="dashboard-grid">
+
+
+        <div class="dashboard-card">
+
+            <div class="icon">
+                📷
+            </div>
+
+            <h3 id="workCount">
+                0
+            </h3>
+
+            <p>
+                ผลงานของฉัน
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="icon">
+                💬
+            </div>
+
+            <h3 id="messageCount">
+                0
+            </h3>
+
+            <p>
+                การติดต่อจากลูกค้า
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <div class="icon">
+                🚀
+            </div>
+
+            <h3 id="promotionCount">
+                0
+            </h3>
+
+            <p>
+                คำขอโปรโมท
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ADD WORK -->
+
+    <div class="form-box">
+
+        <h2>
+            📸 ลงผลงานใหม่
+        </h2>
+
+        <p
+            class="muted"
+            style="margin:5px 0 20px"
+        >
+            ลูกค้าจะสามารถเห็นผลงานนี้บน PhotoHub
+        </p>
+
+
+        <form
+            class="form"
+            onsubmit="addWork(event)"
+        >
+
+            <label>
+                ชื่อผลงาน
+            </label>
+
+            <input
+                id="workTitle"
+                required
+                placeholder="เช่น Pre Wedding กรุงเทพ"
+            >
+
+
+            <label>
+                ประเภทงาน
+            </label>
+
+            <select id="workType">
+
+                <option>
+                    งานแต่งงาน
+                </option>
+
+                <option>
+                    รับปริญญา
+                </option>
+
+                <option>
+                    Portrait
+                </option>
+
+                <option>
+                    สินค้า
+                </option>
+
+                <option>
+                    แฟชั่น
+                </option>
+
+                <option>
+                    อีเวนต์
+                </option>
+
+            </select>
+
+
+            <label>
+                ราคาเริ่มต้น
+            </label>
+
+            <input
+                id="workPrice"
+                type="number"
+                min="0"
+                required
+                placeholder="5000"
+            >
+
+
+            <label>
+                รูปผลงาน
+            </label>
+
+            <input
+                id="workImage"
+                type="file"
+                accept="image/*"
+                required
+            >
+
+
+            <label>
+                รายละเอียด
+            </label>
+
+            <textarea
+                id="workDescription"
+                placeholder="รายละเอียดผลงาน..."
+            ></textarea>
+
+
+            <button class="btn">
+                + เผยแพร่ผลงาน
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- MY WORK -->
+
+    <div class="form-box">
+
+        <h2>
+            ผลงานของฉัน
+        </h2>
+
+        <br>
+
+        <div
+            id="myWorks"
+            class="portfolio-grid"
+        ></div>
+
+    </div>
+
+
+    <!-- PROMOTION -->
+
+    <div class="form-box">
+
+        <h2>
+            🚀 ขอโปรโมทผลงาน
+        </h2>
+
+        <p
+            class="muted"
+            style="margin:5px 0 20px"
+        >
+            ส่งคำขอให้ทีม PhotoHub พิจารณาโปรโมทผลงาน
+        </p>
+
+
+        <form
+            class="form"
+            onsubmit="requestPromotion(event)"
+        >
+
+            <label>
+                เลือกผลงาน
+            </label>
+
+            <select id="promotionWork"></select>
+
+
+            <label>
+                เหตุผลที่ต้องการโปรโมท
+            </label>
+
+            <textarea
+                id="promotionReason"
+                required
+                placeholder="บอกทีมงานว่าทำไมผลงานนี้ควรได้รับการโปรโมท"
+            ></textarea>
+
+
+            <button class="btn">
+                ส่งคำขอโปรโมท
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- MESSAGES -->
+
+    <div class="form-box">
+
+        <h2>
+            💬 ลูกค้าที่ติดต่อมา
+        </h2>
+
+        <br>
+
+        <div id="photographerMessages"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+                       LOGIN
+========================================================= -->
+
+<div
+    id="loginModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal('loginModal')"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            เข้าสู่ระบบ
+        </h2>
+
+        <p
+            class="muted"
+            style="margin:5px 0 20px"
+        >
+            ระบบจะจดจำบัญชีของคุณไว้ในเครื่องนี้
+        </p>
+
+
+        <form
+            class="form"
+            onsubmit="login(event)"
+        >
+
+            <label>
+                ชื่อผู้ใช้
+            </label>
+
+            <input
+                id="loginUsername"
+                required
+                placeholder="username"
+            >
+
+
+            <label>
+                รหัสผ่าน
+            </label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                required
+                placeholder="รหัสผ่าน"
+            >
+
+
+            <button class="btn">
+                เข้าสู่ระบบ
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+                       REGISTER
+========================================================= -->
+
+<div
+    id="registerModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal('registerModal')"
+        >
+            ×
+        </button>
+
+
+        <h2 id="registerTitle">
+            สมัครสมาชิก
+        </h2>
+
+
+        <p
+            id="registerDescription"
+            class="muted"
+            style="margin:5px 0 20px"
+        ></p>
+
+
+        <form
+            class="form"
+            onsubmit="register(event)"
+        >
+
+            <input
+                type="hidden"
+                id="registerRole"
+            >
+
+
+            <label>
+                ชื่อที่แสดง
+            </label>
+
+            <input
+                id="registerName"
+                required
+                placeholder="ชื่อของคุณ"
+            >
+
+
+            <label>
+                ชื่อผู้ใช้
+            </label>
+
+            <input
+                id="registerUsername"
+                required
+                placeholder="username"
+            >
+
+
+            <label>
+                รหัสผ่าน
+            </label>
+
+            <input
+                id="registerPassword"
+                type="password"
+                minlength="4"
+                required
+                placeholder="อย่างน้อย 4 ตัว"
+            >
+
+
+            <div
+                id="photographerRegisterFields"
+                class="hidden"
+            >
+
+                <label>
+                    ประเภทงานหลัก
+                </label>
+
+                <select id="registerType">
+
+                    <option>
+                        งานแต่งงาน
+                    </option>
+
+                    <option>
+                        รับปริญญา
+                    </option>
+
+                    <option>
+                        Portrait
+                    </option>
+
+                    <option>
+                        สินค้า
+                    </option>
+
+                    <option>
+                        แฟชั่น
+                    </option>
+
+                    <option>
+                        อีเวนต์
+                    </option>
+
+                </select>
+
+
+                <label style="display:block;margin-top:14px">
+                    เรทราคาเริ่มต้น
+                </label>
+
+                <input
+                    id="registerPrice"
+                    type="number"
+                    placeholder="5000"
+                >
+
+
+                <label style="display:block;margin-top:14px">
+                    แนะนำตัว
+                </label>
+
+                <textarea
+                    id="registerBio"
+                    placeholder="แนะนำตัวและสไตล์การถ่ายภาพ"
+                ></textarea>
+
+            </div>
+
+
+            <button class="btn">
+                สร้างบัญชี
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+                   EDIT PROFILE
+========================================================= -->
+
+<div
+    id="editProfileModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal('editProfileModal')"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            แก้ไขโปรไฟล์
+        </h2>
+
+        <br>
+
+
+        <form
+            class="form"
+            onsubmit="saveProfile(event)"
+        >
+
+            <label>
+                ชื่อ
+            </label>
+
+            <input
+                id="editName"
+                required
+            >
+
+
+            <label>
+                ประเภทงาน
+            </label>
+
+            <select id="editType">
+
+                <option>
+                    งานแต่งงาน
+                </option>
+
+                <option>
+                    รับปริญญา
+                </option>
+
+                <option>
+                    Portrait
+                </option>
+
+                <option>
+                    สินค้า
+                </option>
+
+                <option>
+                    แฟชั่น
+                </option>
+
+                <option>
+                    อีเวนต์
+                </option>
+
+            </select>
+
+
+            <label>
+                ราคาเริ่มต้น
+            </label>
+
+            <input
+                id="editPrice"
+                type="number"
+            >
+
+
+            <label>
+                แนะนำตัว
+            </label>
+
+            <textarea
+                id="editBio"
+            ></textarea>
+
+
+            <label>
+                รูปโปรไฟล์
+            </label>
+
+            <input
+                id="editProfileImage"
+                type="file"
+                accept="image/*"
+            >
+
+
+            <button class="btn">
+                บันทึก
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<script>
+
+/* =========================================================
+                      STORAGE
+========================================================= */
+
+function getUsers(){
+
+    return JSON.parse(
+        localStorage.getItem("photohub_users") || "[]"
+    );
+
+}
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        "photohub_users",
+        JSON.stringify(users)
+    );
+
+}
+
+function getWorks(){
+
+    return JSON.parse(
+        localStorage.getItem("photohub_works") || "[]"
+    );
+
+}
+
+function saveWorks(works){
+
+    localStorage.setItem(
+        "photohub_works",
+        JSON.stringify(works)
+    );
+
+}
+
+function getMessages(){
+
+    return JSON.parse(
+        localStorage.getItem("photohub_messages") || "[]"
+    );
+
+}
+
+function saveMessages(messages){
+
+    localStorage.setItem(
+        "photohub_messages",
+        JSON.stringify(messages)
+    );
+
+}
+
+function getPromotions(){
+
+    return JSON.parse(
+        localStorage.getItem("photohub_promotions") || "[]"
+    );
+
+}
+
+function savePromotions(data){
+
+    localStorage.setItem(
+        "photohub_promotions",
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* =========================================================
+                     CURRENT USER
+========================================================= */
+
+function getCurrentUser(){
+
+    return JSON.parse(
+        localStorage.getItem("photohub_current_user") || "null"
+    );
+
+}
+
+function setCurrentUser(user){
+
+    localStorage.setItem(
+        "photohub_current_user",
+        JSON.stringify(user)
+    );
+
+}
+
+
+/* =========================================================
+                       START
+========================================================= */
+
+window.onload=function(){
+
+    const user=getCurrentUser();
+
+    if(user){
+
+        if(user.role==="photographer"){
+
+            showPhotographer();
+
+        }else{
+
+            showCustomer();
+
+        }
+
+    }else{
+
+        showHome();
+
+    }
+
+};
+
+
+/* =========================================================
+                      NAVIGATION
+========================================================= */
+
+function goHome(){
+
+    showHome();
+
+}
+
+function showHome(){
+
+    document
+        .getElementById("homePage")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("customerPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("photographerPage")
+        .classList.add("hidden");
+
+}
+
+function showCustomer(){
+
+    document
+        .getElementById("homePage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("photographerPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("customerPage")
+        .classList.remove("hidden");
+
+    renderCustomerPhotographers();
+
+    renderCustomerMessages();
+
+}
+
+function showPhotographer(){
+
+    document
+        .getElementById("homePage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("customerPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("photographerPage")
+        .classList.remove("hidden");
+
+    renderPhotographerDashboard();
+
+}
+
+
+/* =========================================================
+                       REGISTER
+========================================================= */
+
+function openRegister(role){
+
+    document
+        .getElementById("registerRole")
+        .value=role;
+
+
+    if(role==="photographer"){
+
+        document
+            .getElementById("registerTitle")
+            .innerText="สมัครเป็นช่างภาพ";
+
+        document
+            .getElementById("registerDescription")
+            .innerText=
+            "สร้างโปรไฟล์ ลงผลงาน ตั้งราคา และรับลูกค้า";
+
+        document
+            .getElementById("photographerRegisterFields")
+            .classList.remove("hidden");
+
+    }else{
+
+        document
+            .getElementById("registerTitle")
+            .innerText="สมัครเพื่อหาช่างภาพ";
+
+        document
+            .getElementById("registerDescription")
+            .innerText=
+            "ค้นหาช่างภาพ ดูผลงาน ราคา และติดต่อช่างภาพ";
+
+        document
+            .getElementById("photographerRegisterFields")
+            .classList.add("hidden");
+
+    }
+
+
+    openModal("registerModal");
+
+}
+
+
+function register(event){
+
+    event.preventDefault();
+
+
+    const role=
+        document.getElementById("registerRole").value;
+
+    const name=
+        document.getElementById("registerName")
+        .value
+        .trim();
+
+    const username=
+        document.getElementById("registerUsername")
+        .value
+        .trim();
+
+    const password=
+        document.getElementById("registerPassword")
+        .value;
+
+
+    let users=getUsers();
+
+
+    if(
+        users.some(
+            u =>
+            u.username.toLowerCase()===
+            username.toLowerCase()
+        )
+    ){
+
+        toast("ชื่อผู้ใช้นี้มีอยู่แล้ว");
+
+        return;
+
+    }
+
+
+    const user={
+
+        id:Date.now(),
+
+        role:role,
+
+        name:name,
+
+        username:username,
+
+        password:password,
+
+        type:
+            role==="photographer"
+            ?
+            document.getElementById("registerType").value
+            :
+            "",
+
+        price:
+            role==="photographer"
+            ?
+            Number(
+                document.getElementById("registerPrice").value||0
+            )
+            :
+            0,
+
+        bio:
+            role==="photographer"
+            ?
+            document.getElementById("registerBio").value
+            :
+            "",
+
+        image:
+            "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=800&q=80"
+
+    };
+
+
+    users.push(user);
+
+    saveUsers(users);
+
+    setCurrentUser(user);
+
+    closeModal("registerModal");
+
+    toast("สมัครสมาชิกสำเร็จ");
+
+
+    if(role==="photographer"){
+
+        showPhotographer();
+
+    }else{
+
+        showCustomer();
+
+    }
+
+}
+
+
+/* =========================================================
+                         LOGIN
+========================================================= */
+
+function openLogin(){
+
+    openModal("loginModal");
+
+}
+
+
+function login(event){
+
+    event.preventDefault();
+
+
+    const username=
+        document.getElementById("loginUsername")
+        .value
+        .trim();
+
+    const password=
+        document.getElementById("loginPassword")
+        .value;
+
+
+    const users=getUsers();
+
+
+    const user=users.find(
+        u =>
+        u.username===username &&
+        u.password===password
+    );
+
+
+    if(!user){
+
+        toast("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+
+        return;
+
+    }
+
+
+    setCurrentUser(user);
+
+    closeModal("loginModal");
+
+    toast("เข้าสู่ระบบสำเร็จ");
+
+
+    if(user.role==="photographer"){
+
+        showPhotographer();
+
+    }else{
+
+        showCustomer();
+
+    }
+
+}
+
+
+/* =========================================================
+                         LOGOUT
+========================================================= */
+
+function logout(){
+
+    localStorage.removeItem(
+        "photohub_current_user"
+    );
+
+    showHome();
+
+    toast("ออกจากระบบแล้ว");
+
+}
+
+
+/* =========================================================
+                  PHOTOGRAPHERS
+========================================================= */
+
+function getPhotographers(){
+
+    return getUsers()
+        .filter(
+            u=>u.role==="photographer"
+        );
+
+}
+
+
+function renderCustomerPhotographers(){
+
+    const container=
+        document.getElementById(
+            "customerPhotographers"
+        );
+
+
+    const photographers=
+        getPhotographers();
+
+
+    if(photographers.length===0){
+
+        container.innerHTML=`
+
+            <div
+                class="form-box"
+                style="
+                    grid-column:1/-1;
+                    text-align:center
+                "
+            >
+
+                <h2>
+                    ยังไม่มีช่างภาพ
+                </h2>
+
+                <p
+                    class="muted"
+                    style="margin-top:8px"
+                >
+                    รอช่างภาพสมัครเข้ามาใน PhotoHub
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML=
+        photographers.map(p=>`
+
+            <div class="photo-card">
+
+                <img
+                    class="photo-cover"
+                    src="${p.image}"
+                >
+
+
+                <div class="photo-info">
+
+                    <h3>
+                        ${escapeHTML(p.name)}
+                    </h3>
+
+
+                    <div class="photo-meta">
+                        ${escapeHTML(p.type)}
+                    </div>
+
+
+                    <div
+                        class="price"
+                        style="color:#ff3038"
+                    >
+                        เริ่มต้น
+                        ฿${Number(p.price).toLocaleString()}
+                    </div>
+
+
+                    <p
+                        class="muted"
+                        style="
+                            font-size:13px;
+                            margin-bottom:15px;
+                            line-height:1.6
+                        "
+                    >
+                        ${
+                            escapeHTML(
+                                p.bio ||
+                                "ช่างภาพ PhotoHub"
+                            )
+                        }
+                    </p>
+
+
+                    <div class="card-buttons">
+
+                        <button
+                            class="btn btn-light"
+                            onclick="viewPhotographer(${p.id})"
+                        >
+                            ดูผลงาน
+                        </button>
+
+
+                        <button
+                            class="btn"
+                            onclick="contactPhotographer(${p.id})"
+                        >
+                            ติดต่อ
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+                         SEARCH
+========================================================= */
+
+function searchPhotographers(){
+
+    const text=
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const type=
+        document.getElementById("searchType")
+        .value;
+
+
+    const result=
+        getPhotographers()
+        .filter(p=>{
+
+            const matchText=
+                !text ||
+                p.name.toLowerCase().includes(text) ||
+                p.type.toLowerCase().includes(text) ||
+                (p.bio||"").toLowerCase().includes(text);
+
+
+            const matchType=
+                !type ||
+                p.type===type;
+
+
+            return matchText&&matchType;
+
+        });
+
+
+    const container=
+        document.getElementById(
+            "customerPhotographers"
+        );
+
+
+    if(result.length===0){
+
+        container.innerHTML=`
+
+            <div
+                class="form-box"
+                style="
+                    grid-column:1/-1;
+                    text-align:center
+                "
+            >
+
+                <h2>
+                    ไม่พบช่างภาพ
+                </h2>
+
+                <p
+                    class="muted"
+                    style="margin-top:8px"
+                >
+                    ลองเปลี่ยนคำค้นหา
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML=
+        result.map(p=>`
+
+            <div class="photo-card">
+
+                <img
+                    class="photo-cover"
+                    src="${p.image}"
+                >
+
+
+                <div class="photo-info">
+
+                    <h3>
+                        ${escapeHTML(p.name)}
+                    </h3>
+
+
+                    <div class="photo-meta">
+                        ${escapeHTML(p.type)}
+                    </div>
+
+
+                    <div
+                        class="price"
+                        style="color:#ff3038"
+                    >
+                        เริ่มต้น
+                        ฿${Number(p.price).toLocaleString()}
+                    </div>
+
+
+                    <div class="card-buttons">
+
+                        <button
+                            class="btn btn-light"
+                            onclick="viewPhotographer(${p.id})"
+                        >
+                            ดูผลงาน
+                        </button>
+
+
+                        <button
+                            class="btn"
+                            onclick="contactPhotographer(${p.id})"
+                        >
+                            ติดต่อ
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+                   VIEW PHOTOGRAPHER
+========================================================= */
+
+function viewPhotographer(id){
+
+    const photographer=
+        getPhotographers()
+        .find(p=>p.id===id);
+
+
+    if(!photographer)
+        return;
+
+
+    const works=
+        getWorks()
+        .filter(
+            w=>w.photographerId===id
+        );
+
+
+    let worksHTML="";
+
+
+    if(works.length===0){
+
+        worksHTML=`
+
+            <p class="muted">
+                ช่างภาพคนนี้ยังไม่มีผลงาน
+            </p>
+
+        `;
+
+    }else{
+
+        worksHTML=`
+
+            <div class="portfolio-grid">
+
+                ${
+                    works.map(w=>`
+
+                        <div class="portfolio-item">
+
+                            <img src="${w.image}">
+
+
+                            <div class="portfolio-info">
+
+                                <h3>
+                                    ${escapeHTML(w.title)}
+                                </h3>
+
+
+                                <p class="muted">
+                                    ${escapeHTML(w.type)}
+                                </p>
+
+
+                                <p
+                                    style="
+                                        margin-top:8px;
+                                        color:#ff3038;
+                                        font-weight:bold
+                                    "
+                                >
+                                    ฿${Number(w.price).toLocaleString()}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    `).join("")
+                }
+
+            </div>
+
+        `;
+
+    }
+
+
+    showPageModal(`
+
+        <div class="profile-head">
+
+            <img
+                src="${photographer.image}"
+                class="profile-image"
+            >
+
+
+            <div>
+
+                <h2>
+                    ${escapeHTML(photographer.name)}
+                </h2>
+
+
+                <p class="muted">
+                    ${escapeHTML(photographer.type)}
+                </p>
+
+
+                <p
+                    style="
+                        margin-top:10px;
+                        line-height:1.6
+                    "
+                >
+                    ${escapeHTML(photographer.bio||"")}
+                </p>
+
+
+                <p
+                    style="
+                        margin-top:10px;
+                        color:#ff3038;
+                        font-weight:bold
+                    "
+                >
+                    เรทเริ่มต้น
+                    ฿${Number(
+                        photographer.price
+                    ).toLocaleString()}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <hr style="margin:25px 0">
+
+
+        <h2>
+            Portfolio
+        </h2>
+
+
+        <br>
+
+
+        ${worksHTML}
+
+
+        <br>
+
+
+        <button
+            class="btn"
+            style="width:100%"
+            onclick="
+                closeModal('pageModal');
+                contactPhotographer(${photographer.id})
+            "
+        >
+            ติดต่อช่างภาพคนนี้
+        </button>
+
+    `);
+
+}
+
+
+/* =========================================================
+                   CONTACT
+========================================================= */
+
+function contactPhotographer(id){
+
+    const customer=
+        getCurrentUser();
+
+
+    const photographer=
+        getPhotographers()
+        .find(p=>p.id===id);
+
+
+    if(
+        !customer ||
+        !photographer
+    ){
+
+        toast("กรุณาเข้าสู่ระบบ");
+
+        return;
+
+    }
+
+
+    showPageModal(`
+
+        <h2>
+            ติดต่อ
+            ${escapeHTML(
+                photographer.name
+            )}
+        </h2>
+
+
+        <p
+            class="muted"
+            style="margin-top:5px"
+        >
+            ส่งรายละเอียดงานให้ช่างภาพ
+        </p>
+
+
+        <br>
+
+
+        <form
+            class="form"
+            onsubmit="
+                sendMessage(
+                    event,
+                    ${id}
+                )
+            "
+        >
+
+            <label>
+                วันที่ต้องการถ่าย
+            </label>
+
+
+            <input
+                type="date"
+                id="contactDate"
+                required
+            >
+
+
+            <label>
+                รายละเอียดงาน
+            </label>
+
+
+            <textarea
+                id="contactText"
+                required
+                placeholder="เช่น ต้องการถ่ายงานรับปริญญา 4 ชั่วโมง..."
+            ></textarea>
+
+
+            <button class="btn">
+                ส่งข้อความ
+            </button>
+
+        </form>
+
+    `);
+
+}
+
+
+function sendMessage(
+    event,
+    photographerId
+){
+
+    event.preventDefault();
+
+
+    const customer=
+        getCurrentUser();
+
+
+    const messages=
+        getMessages();
+
+
+    messages.push({
+
+        id:Date.now(),
+
+        customerId:
+            customer.id,
+
+        customerName:
+            customer.name,
+
+        photographerId:
+            photographerId,
+
+        date:
+            document.getElementById(
+                "contactDate"
+            ).value,
+
+        text:
+            document.getElementById(
+                "contactText"
+            ).value,
+
+        status:
+            "รอตอบกลับ",
+
+        createdAt:
+            new Date()
+            .toLocaleString("th-TH")
+
+    });
+
+
+    saveMessages(messages);
+
+
+    closeModal("pageModal");
+
+
+    toast(
+        "ส่งข้อความหาช่างภาพแล้ว"
+    );
+
+
+    renderCustomerMessages();
+
+}
+
+
+/* =========================================================
+                 CUSTOMER MESSAGES
+========================================================= */
+
+function renderCustomerMessages(){
+
+    const user=
+        getCurrentUser();
+
+
+    if(!user)
+        return;
+
+
+    const messages=
+        getMessages()
+        .filter(
+            m=>m.customerId===user.id
+        );
+
+
+    const container=
+        document.getElementById(
+            "customerMessages"
+        );
+
+
+    if(messages.length===0){
+
+        container.innerHTML=`
+
+            <p class="muted">
+                ยังไม่มีการติดต่อ
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML=
+        messages.map(m=>{
+
+            const photographer=
+                getPhotographers()
+                .find(
+                    p =>
+                    p.id===
+                    m.photographerId
+                );
+
+
+            return `
+
+                <div class="message">
+
+                    <div class="message-header">
+
+                        <strong>
+                            ${
+                                escapeHTML(
+                                    photographer
+                                    ?
+                                    photographer.name
+                                    :
+                                    "ช่างภาพ"
+                                )
+                            }
+                        </strong>
+
+
+                        <span class="status">
+                            ${escapeHTML(m.status)}
+                        </span>
+
+                    </div>
+
+
+                    <p>
+                        วันที่:
+                        ${escapeHTML(m.date)}
+                    </p>
+
+
+                    <p
+                        style="
+                            margin-top:8px;
+                            line-height:1.6
+                        "
+                    >
+                        ${escapeHTML(m.text)}
+                    </p>
+
+
+                    <small class="muted">
+                        ${escapeHTML(m.createdAt)}
+                    </small>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =========================================================
+               PHOTOGRAPHER DASHBOARD
+========================================================= */
+
+function renderPhotographerDashboard(){
+
+    const user=
+        getCurrentUser();
+
+
+    document.getElementById(
+        "photographerWelcome"
+    ).innerText=
+        "สวัสดี "+user.name;
+
+
+    document.getElementById(
+        "myName"
+    ).innerText=
+        user.name;
+
+
+    document.getElementById(
+        "myType"
+    ).innerText=
+        user.type;
+
+
+    document.getElementById(
+        "myBio"
+    ).innerText=
+        user.bio ||
+        "ยังไม่มีคำแนะนำตัว";
+
+
+    document.getElementById(
+        "myPrice"
+    ).innerText=
+        "เรทเริ่มต้น ฿"+
+        Number(
+            user.price||0
+        ).toLocaleString();
+
+
+    document.getElementById(
+        "myProfileImage"
+    ).src=
+        user.image;
+
+
+    const works=
+        getWorks()
+        .filter(
+            w =>
+            w.photographerId===
+            user.id
+        );
+
+
+    document.getElementById(
+        "workCount"
+    ).innerText=
+        works.length;
+
+
+    const messages=
+        getMessages()
+        .filter(
+            m =>
+            m.photographerId===
+            user.id
+        );
+
+
+    document.getElementById(
+        "messageCount"
+    ).innerText=
+        messages.length;
+
+
+    const promotions=
+        getPromotions()
+        .filter(
+            p =>
+            p.photographerId===
+            user.id
+        );
+
+
+    document.getElementById(
+        "promotionCount"
+    ).innerText=
+        promotions.length;
+
+
+    renderMyWorks();
+
+    renderPromotionSelect();
+
+    renderPhotographerMessages();
+
+}
+
+
+/* =========================================================
+                       ADD WORK
+========================================================= */
+
+function addWork(event){
+
+    event.preventDefault();
+
+
+    const user=
+        getCurrentUser();
+
+
+    const file=
+        document.getElementById(
+            "workImage"
+        ).files[0];
+
+
+    if(!file){
+
+        toast(
+            "กรุณาเลือกรูป"
+        );
+
+        return;
+
+    }
+
+
+    const reader=
+        new FileReader();
+
+
+    reader.onload=function(e){
+
+        const works=
+            getWorks();
+
+
+        works.push({
+
+            id:Date.now(),
+
+            photographerId:
+                user.id,
+
+            title:
+                document.getElementById(
+                    "workTitle"
+                ).value,
+
+            type:
+                document.getElementById(
+                    "workType"
+                ).value,
+
+            price:
+                Number(
+                    document.getElementById(
+                        "workPrice"
+                    ).value
+                ),
+
+            description:
+                document.getElementById(
+                    "workDescription"
+                ).value,
+
+            image:
+                e.target.result,
+
+            promoted:false,
+
+            createdAt:
+                new Date()
+                .toLocaleString("th-TH")
+
+        });
+
+
+        saveWorks(works);
+
+
+        event.target.reset();
+
+
+        renderPhotographerDashboard();
+
+
+        toast(
+            "เผยแพร่ผลงานแล้ว"
+        );
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+                     MY WORKS
+========================================================= */
+
+function renderMyWorks(){
+
+    const user=
+        getCurrentUser();
+
+
+    const works=
+        getWorks()
+        .filter(
+            w =>
+            w.photographerId===
+            user.id
+        );
+
+
+    const container=
+        document.getElementById(
+            "myWorks"
+        );
+
+
+    if(works.length===0){
+
+        container.innerHTML=`
+
+            <div
+                style="
+                    grid-column:1/-1;
+                    text-align:center;
+                    padding:35px
+                "
+            >
+
+                <p class="muted">
+                    คุณยังไม่มีผลงาน
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML=
+        works.map(w=>`
+
+            <div class="portfolio-item">
+
+                <img src="${w.image}">
+
+
+                <div class="portfolio-info">
+
+                    <h3>
+                        ${escapeHTML(w.title)}
+                    </h3>
+
+
+                    <p class="muted">
+                        ${escapeHTML(w.type)}
+                    </p>
+
+
+                    <p
+                        style="
+                            margin-top:6px;
+                            color:#ff3038
+                        "
+                    >
+                        ฿${Number(
+                            w.price
+                        ).toLocaleString()}
+                    </p>
+
+
+                    ${
+                        w.promoted
+                        ?
+                        `
+                        <span
+                            class="status"
+                            style="
+                                display:inline-block;
+                                margin-top:10px
+                            "
+                        >
+                            🚀 โปรโมทแล้ว
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+
+                    <button
+                        class="btn btn-danger"
+                        style="
+                            width:100%;
+                            margin-top:12px
+                        "
+                        onclick="
+                            deleteWork(${w.id})
+                        "
+                    >
+                        ลบผลงาน
+                    </button>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+function deleteWork(id){
+
+    if(
+        !confirm(
+            "ต้องการลบผลงานนี้หรือไม่?"
+        )
+    )
+        return;
+
+
+    const works=
+        getWorks()
+        .filter(
+            w =>
+            w.id!==id
+        );
+
+
+    saveWorks(works);
+
+
+    renderPhotographerDashboard();
+
+
+    toast(
+        "ลบผลงานแล้ว"
+    );
+
+}
+
+
+/* =========================================================
+                    PROMOTION
+========================================================= */
+
+function renderPromotionSelect(){
+
+    const user=
+        getCurrentUser();
+
+
+    const works=
+        getWorks()
+        .filter(
+            w =>
+            w.photographerId===
+            user.id
+        );
+
+
+    const select=
+        document.getElementById(
+            "promotionWork"
+        );
+
+
+    if(works.length===0){
+
+        select.innerHTML=`
+
+            <option>
+                กรุณาลงผลงานก่อน
+            </option>
+
+        `;
+
+        return;
+
+    }
+
+
+    select.innerHTML=
+        works.map(w=>`
+
+            <option
+                value="${w.id}"
+            >
+                ${escapeHTML(w.title)}
+            </option>
+
+        `).join("");
+
+}
+
+
+function requestPromotion(event){
+
+    event.preventDefault();
+
+
+    const user=
+        getCurrentUser();
+
+
+    const workId=
+        Number(
+            document.getElementById(
+                "promotionWork"
+            ).value
+        );
+
+
+    if(!workId){
+
+        toast(
+            "กรุณาลงผลงานก่อน"
+        );
+
+        return;
+
+    }
+
+
+    const promotions=
+        getPromotions();
+
+
+    promotions.push({
+
+        id:Date.now(),
+
+        photographerId:
+            user.id,
+
+        workId:
+            workId,
+
+        reason:
+            document.getElementById(
+                "promotionReason"
+            ).value,
+
+        status:
+            "รอตรวจสอบ",
+
+        createdAt:
+            new Date()
+            .toLocaleString("th-TH")
+
+    });
+
+
+    savePromotions(
+        promotions
+    );
+
+
+    document.getElementById(
+        "promotionReason"
+    ).value="";
+
+
+    renderPhotographerDashboard();
+
+
+    toast(
+        "ส่งคำขอโปรโมทแล้ว"
+    );
+
+}
+
+
+/* =========================================================
+                PHOTOGRAPHER MESSAGES
+========================================================= */
+
+function renderPhotographerMessages(){
+
+    const user=
+        getCurrentUser();
+
+
+    const messages=
+        getMessages()
+        .filter(
+            m =>
+            m.photographerId===
+            user.id
+        );
+
+
+    const container=
+        document.getElementById(
+            "photographerMessages"
+        );
+
+
+    if(messages.length===0){
+
+        container.innerHTML=`
+
+            <p class="muted">
+                ยังไม่มีลูกค้าติดต่อเข้ามา
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML=
+        messages.map(m=>`
+
+            <div class="message">
+
+                <div class="message-header">
+
+                    <strong>
+                        ${escapeHTML(
+                            m.customerName
+                        )}
+                    </strong>
+
+
+                    <span class="status">
+                        ${escapeHTML(
+                            m.status
+                        )}
+                    </span>
+
+                </div>
+
+
+                <p>
+                    วันที่ต้องการ:
+                    ${escapeHTML(m.date)}
+                </p>
+
+
+                <p
+                    style="
+                        margin-top:8px;
+                        line-height:1.6
+                    "
+                >
+                    ${escapeHTML(m.text)}
+                </p>
+
+
+                <button
+                    class="btn"
+                    style="margin-top:12px"
+                    onclick="
+                        acceptMessage(${m.id})
+                    "
+                >
+                    รับงาน / ตอบกลับ
+                </button>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+function acceptMessage(id){
+
+    let messages=
+        getMessages();
+
+
+    const message=
+        messages.find(
+            m =>
+            m.id===id
+        );
+
+
+    if(message){
+
+        message.status=
+            "ช่างภาพตอบรับแล้ว";
+
+    }
+
+
+    saveMessages(messages);
+
+
+    renderPhotographerDashboard();
+
+
+    toast(
+        "อัปเดตสถานะแล้ว"
+    );
+
+}
+
+
+/* =========================================================
+                    EDIT PROFILE
+========================================================= */
+
+function openEditProfile(){
+
+    const user=
+        getCurrentUser();
+
+
+    document.getElementById(
+        "editName"
+    ).value=
+        user.name;
+
+
+    document.getElementById(
+        "editType"
+    ).value=
+        user.type;
+
+
+    document.getElementById(
+        "editPrice"
+    ).value=
+        user.price;
+
+
+    document.getElementById(
+        "editBio"
+    ).value=
+        user.bio||"";
+
+
+    openModal(
+        "editProfileModal"
+    );
+
+}
+
+
+function saveProfile(event){
+
+    event.preventDefault();
+
+
+    const current=
+        getCurrentUser();
+
+
+    let users=
+        getUsers();
+
+
+    const index=
+        users.findIndex(
+            u =>
+            u.id===
+            current.id
+        );
+
+
+    if(index===-1)
+        return;
+
+
+    users[index].name=
+        document.getElementById(
+            "editName"
+        ).value;
+
+
+    users[index].type=
+        document.getElementById(
+            "editType"
+        ).value;
+
+
+    users[index].price=
+        Number(
+            document.getElementById(
+                "editPrice"
+            ).value
+        );
+
+
+    users[index].bio=
+        document.getElementById(
+            "editBio"
+        ).value;
+
+
+    const file=
+        document.getElementById(
+            "editProfileImage"
+        ).files[0];
+
+
+    if(file){
+
+        const reader=
+            new FileReader();
+
+
+        reader.onload=function(e){
+
+            users[index].image=
+                e.target.result;
+
+
+            saveProfileFinish(
+                users[index],
+                users
+            );
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    }else{
+
+        saveProfileFinish(
+            users[index],
+            users
+        );
+
+    }
+
+}
+
+
+function saveProfileFinish(
+    user,
+    users
+){
+
+    saveUsers(users);
+
+    setCurrentUser(user);
+
+    closeModal(
+        "editProfileModal"
+    );
+
+    renderPhotographerDashboard();
+
+    toast(
+        "บันทึกโปรไฟล์แล้ว"
+    );
+
+}
+
+
+/* =========================================================
+                       MODAL
+========================================================= */
+
+function openModal(id){
+
+    document
+        .getElementById(id)
+        .classList.add("show");
+
+}
+
+
+function closeModal(id){
+
+    const element=
+        document.getElementById(id);
+
+
+    if(element){
+
+        element.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+                 DYNAMIC PAGE MODAL
+========================================================= */
+
+function showPageModal(content){
+
+    let modal=
+        document.getElementById(
+            "pageModal"
+        );
+
+
+    if(!modal){
+
+        modal=
+            document.createElement(
+                "div"
+            );
+
+        modal.id=
+            "pageModal";
+
+        modal.className=
+            "modal";
+
+        document.body.appendChild(
+            modal
+        );
+
+    }
+
+
+    modal.innerHTML=`
+
+        <div class="modal-box">
+
+            <button
+                class="close"
+                onclick="
+                    closeModal(
+                        'pageModal'
+                    )
+                "
+            >
+                ×
+            </button>
+
+            ${content}
+
+        </div>
+
+    `;
+
+
+    modal.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =========================================================
+                        TOAST
+========================================================= */
+
+function toast(message){
+
+    const element=
+        document.getElementById(
+            "toast"
+        );
+
+
+    element.innerText=
+        message;
+
+
+    element.style.display=
+        "block";
+
+
+    setTimeout(
+        ()=>{
+            element.style.display=
+                "none";
+        },
+        2500
+    );
+
+}
+
+
+/* =========================================================
+                     ESCAPE HTML
+========================================================= */
+
+function escapeHTML(text){
+
+    if(
+        text===undefined ||
+        text===null
+    )
+        return "";
+
+
+    return String(text)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+                  CLOSE MODAL
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.classList
+            .contains("modal")
+        ){
+
+            event.target.classList
+                .remove("show");
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
